@@ -4,271 +4,908 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b4f8a">
-  <meta name="description" content="PWA kalkulator akhir bulan untuk Buku Log Penggunaan Kenderaan.">
-  <title>Kalkulator Buku Log Kenderaan</title>
+  <meta
+    name="description"
+    content="Kalkulator Buku Log UPB untuk pengiraan bahan api dan penggunaan kenderaan bulanan."
+  >
+
+  <title>Kalkulator Buku Log UPB</title>
 
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" href="./assets/icons/icon-192.png">
   <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
+
 <body>
+
   <div class="app-shell">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
     <header class="topbar">
+
       <div class="brand">
+
         <div class="brand-mark">BL</div>
+
         <div>
-          <h1>Kalkulator Buku Log</h1>
+          <h1>Kalkulator Buku Log UPB</h1>
           <p>Pengiraan bahan api bulanan</p>
         </div>
+
       </div>
-      <div class="status-pill" id="saveStatus">Disimpan pada peranti</div>
+
+      <div class="status-pill" id="saveStatus">
+        Disimpan pada peranti
+      </div>
+
     </header>
 
+
+    <!-- =========================
+         MAIN
+    ========================== -->
     <main class="main">
+
+
+      <!-- =========================
+           HOME
+      ========================== -->
       <section id="viewHome" class="view active">
+
         <div class="hero-card">
-          <span class="eyebrow">PERSENJATAAN • UPB PAGES</span>
-          <h2>Kira buku log hujung bulan tanpa ingat formula.</h2>
+
+          <span class="eyebrow">
+            PERSENJATAAN • UPB
+          </span>
+
+          <h2>
+            Kira Buku Log Kenderaan,
+            Tidak Lagi Buat Kepala Anda Pening.
+          </h2>
+
           <p>
-            Masukkan bacaan penting daripada buku log fizikal. Sistem akan mengira
-            jarak terkumpul, penggunaan bahan api, pembelian dan kadar penggunaan
-            bagi setiap helaian.
+            Masukkan bacaan penting daripada buku log fizikal.
+            Sistem akan mengira jarak terkumpul, penggunaan bahan api,
+            pembelian dan kadar penggunaan bagi setiap helaian.
           </p>
+
           <div class="hero-actions">
-            <button class="btn btn-primary" id="btnNew">Pengiraan Baharu</button>
-            <button class="btn btn-secondary" id="btnResume" hidden>Sambung Pengiraan</button>
+
+            <button
+              class="btn btn-primary"
+              id="btnNew"
+            >
+              Pengiraan Baharu
+            </button>
+
+            <button
+              class="btn btn-secondary"
+              id="btnResume"
+              hidden
+            >
+              Sambung Pengiraan
+            </button>
+
           </div>
+
         </div>
 
+
+        <!-- INFO -->
         <div class="info-grid">
+
           <article class="info-card">
+
             <span>01</span>
+
             <h3>Isi maklumat bulan</h3>
-            <p>Kapasiti tangki, kadar standard, baki bulan lepas dan odometer awal.</p>
+
+            <p>
+              Kapasiti tangki, kadar standard,
+              baki bulan lepas dan odometer awal.
+            </p>
+
           </article>
+
+
           <article class="info-card">
+
             <span>02</span>
+
             <h3>Masukkan setiap helaian</h3>
-            <p>Odometer akhir dan rekod isi minyak sahaja. Odometer awal disambung automatik.</p>
+
+            <p>
+              Odometer akhir dan rekod isi minyak sahaja.
+              Odometer awal disambung automatik.
+            </p>
+
           </article>
+
+
           <article class="info-card">
+
             <span>03</span>
+
             <h3>Salin keputusan</h3>
-            <p>Empat angka utama dipaparkan untuk ditulis semula pada buku log.</p>
+
+            <p>
+              Empat angka utama dipaparkan untuk
+              ditulis semula pada buku log.
+            </p>
+
           </article>
+
         </div>
+
       </section>
 
+
+
+      <!-- =========================
+           SETUP
+      ========================== -->
       <section id="viewSetup" class="view">
+
         <div class="page-head">
-          <button class="icon-btn" data-go="home" aria-label="Kembali">←</button>
+
+          <button
+            class="icon-btn"
+            data-go="home"
+            aria-label="Kembali"
+          >
+            ←
+          </button>
+
           <div>
-            <span class="eyebrow">LANGKAH 1</span>
-            <h2>Maklumat Pengiraan Bulanan</h2>
+
+            <span class="eyebrow">
+              LANGKAH 1
+            </span>
+
+            <h2>
+              Maklumat Pengiraan Bulanan
+            </h2>
+
           </div>
+
         </div>
 
-        <form id="setupForm" class="panel form-grid" novalidate>
+
+        <form
+          id="setupForm"
+          class="panel form-grid"
+          novalidate
+        >
+
+
+          <!-- BULAN -->
           <label>
+
             <span>Bulan</span>
-            <input type="month" id="month" required>
+
+            <input
+              type="month"
+              id="month"
+              required
+            >
+
           </label>
 
+
+          <!-- KAPASITI TANGKI -->
           <label>
-            <span>Kapasiti Tangki (Liter)</span>
-            <input type="number" id="tankCapacity" min="1" step="0.001" inputmode="decimal" placeholder="Contoh: 70" required>
+
+            <span>
+              Kapasiti Tangki (Liter)
+            </span>
+
+            <input
+              type="number"
+              id="tankCapacity"
+              min="1"
+              step="0.001"
+              inputmode="decimal"
+              placeholder="Contoh: 70"
+              required
+            >
+
           </label>
 
+
+          <!-- KADAR STANDARD -->
           <label>
-            <span>Kadar Standard (km/L)</span>
-            <input type="number" id="standardRate" min="0.1" step="0.01" inputmode="decimal" value="7" required>
+
+            <span>
+              Kadar Standard (km/L)
+            </span>
+
+            <input
+              type="number"
+              id="standardRate"
+              min="0.1"
+              step="0.01"
+              inputmode="decimal"
+              value="7"
+              required
+            >
+
           </label>
 
+
+          <!-- BAKI BULAN LEPAS -->
           <label>
-            <span>Baki Bahan Api Bulan Lepas (Liter)</span>
-            <input type="number" id="openingFuel" min="0" step="0.001" inputmode="decimal" placeholder="Contoh: 49" required>
+
+            <span>
+              Baki Bahan Api Bulan Lepas (Liter)
+            </span>
+
+            <input
+              type="number"
+              id="openingFuel"
+              min="0"
+              step="0.001"
+              inputmode="decimal"
+              placeholder="Contoh: 49"
+              required
+            >
+
           </label>
 
+
+          <!-- ODOMETER AWAL -->
           <label class="full">
-            <span>Bacaan Odometer Awal Bulan (km)</span>
-            <input type="number" id="openingOdo" min="0" step="1" inputmode="numeric" placeholder="Contoh: 322463" required>
+
+            <span>
+              Bacaan Odometer Awal Bulan (km)
+            </span>
+
+            <input
+              type="number"
+              id="openingOdo"
+              min="0"
+              step="1"
+              inputmode="numeric"
+              placeholder="Contoh: 322463"
+              required
+            >
+
           </label>
 
+
+          <!-- PEMBUNDARAN -->
           <div class="callout full">
+
             <strong>Pembundaran</strong>
-            <span>Sistem membundarkan kepada nombor bulat terdekat: 58.57 → 59, 7.80 → 8.</span>
+
+            <span>
+              Sistem membundarkan kepada nombor bulat terdekat:
+              58.57 → 59, 7.80 → 8.
+            </span>
+
           </div>
 
-          <button type="submit" class="btn btn-primary full">Mula Pengiraan</button>
+
+          <button
+            type="submit"
+            class="btn btn-primary full"
+          >
+            Mula Pengiraan
+          </button>
+
         </form>
+
       </section>
 
+
+
+      <!-- =========================
+           HELAIAN
+      ========================== -->
       <section id="viewSheet" class="view">
+
         <div class="page-head">
-          <button class="icon-btn" data-go="home" aria-label="Kembali">←</button>
+
+          <button
+            class="icon-btn"
+            data-go="home"
+            aria-label="Kembali"
+          >
+            ←
+          </button>
+
           <div>
-            <span class="eyebrow" id="sheetEyebrow">HELAIAN 1</span>
-            <h2 id="sheetTitle">Masukkan Bacaan Helaian</h2>
+
+            <span
+              class="eyebrow"
+              id="sheetEyebrow"
+            >
+              HELAIAN 1
+            </span>
+
+            <h2 id="sheetTitle">
+              Masukkan Bacaan Helaian
+            </h2>
+
           </div>
+
         </div>
 
+
+        <!-- SUMMARY -->
         <div class="summary-strip">
+
           <div>
+
             <span>Bulan</span>
-            <strong id="summaryMonth">-</strong>
+
+            <strong id="summaryMonth">
+              -
+            </strong>
+
           </div>
+
+
           <div>
+
             <span>Tangki</span>
-            <strong id="summaryTank">-</strong>
+
+            <strong id="summaryTank">
+              -
+            </strong>
+
           </div>
+
+
           <div>
+
             <span>Standard</span>
-            <strong id="summaryRate">-</strong>
+
+            <strong id="summaryRate">
+              -
+            </strong>
+
           </div>
+
         </div>
 
-        <form id="sheetForm" class="panel form-grid" novalidate>
+
+
+        <!-- FORM HELAIAN -->
+        <form
+          id="sheetForm"
+          class="panel form-grid"
+          novalidate
+        >
+
+
+          <!-- ODO AWAL -->
           <label>
-            <span>Odometer Awal Helaian</span>
-            <input type="number" id="sheetStartOdo" step="1" inputmode="numeric" required readonly>
-            <small>Diambil automatik daripada helaian sebelumnya.</small>
+
+            <span>
+              Odometer Awal Helaian
+            </span>
+
+            <input
+              type="number"
+              id="sheetStartOdo"
+              step="1"
+              inputmode="numeric"
+              required
+              readonly
+            >
+
+            <small>
+              Diambil automatik daripada helaian sebelumnya.
+            </small>
+
           </label>
 
+
+          <!-- ODO AKHIR -->
           <label>
-            <span>Odometer Akhir Helaian</span>
-            <input type="number" id="sheetEndOdo" step="1" inputmode="numeric" placeholder="Masukkan bacaan akhir" required>
+
+            <span>
+              Odometer Akhir Helaian
+            </span>
+
+            <input
+              type="number"
+              id="sheetEndOdo"
+              step="1"
+              inputmode="numeric"
+              placeholder="Masukkan bacaan akhir"
+              required
+            >
+
           </label>
 
+
+
+          <!-- ISI MINYAK -->
           <div class="full section-title-row">
+
             <div>
-              <h3>Isi Minyak Dalam Helaian Ini</h3>
-              <p>Jika tiada isi minyak, biarkan kosong.</p>
+
+              <h3>
+                Isi Minyak Dalam Helaian Ini
+              </h3>
+
+              <p>
+                Jika tiada isi minyak,
+                biarkan kosong.
+              </p>
+
             </div>
-            <button type="button" class="btn btn-small btn-secondary" id="btnAddFuel">+ Tambah Isi Minyak</button>
+
+
+            <button
+              type="button"
+              class="btn btn-small btn-secondary"
+              id="btnAddFuel"
+            >
+              + Tambah Isi Minyak
+            </button>
+
           </div>
 
-          <div id="fuelEntries" class="full fuel-list"></div>
 
-          <div id="sheetError" class="error-box full" hidden></div>
+          <div
+            id="fuelEntries"
+            class="full fuel-list"
+          ></div>
 
-          <button type="submit" class="btn btn-primary full">Kira Helaian</button>
+
+          <div
+            id="sheetError"
+            class="error-box full"
+            hidden
+          ></div>
+
+
+          <button
+            type="submit"
+            class="btn btn-primary full"
+          >
+            Kira Helaian
+          </button>
+
         </form>
+
       </section>
 
+
+
+      <!-- =========================
+           RESULT
+      ========================== -->
       <section id="viewResult" class="view">
+
         <div class="page-head">
-          <button class="icon-btn" id="btnBackToEdit" aria-label="Kembali">←</button>
+
+          <button
+            class="icon-btn"
+            id="btnBackToEdit"
+            aria-label="Kembali"
+          >
+            ←
+          </button>
+
           <div>
-            <span class="eyebrow" id="resultEyebrow">HELAIAN</span>
-            <h2>Keputusan Untuk Disalin</h2>
+
+            <span
+              class="eyebrow"
+              id="resultEyebrow"
+            >
+              HELAIAN
+            </span>
+
+            <h2>
+              Keputusan Untuk Disalin
+            </h2>
+
           </div>
+
         </div>
 
+
+
+        <!-- RESULT GRID -->
         <div class="result-grid">
+
+
           <article class="result-card">
-            <span>Jumlah Jarak Perjalanan</span>
-            <strong id="resDistance">0 KM</strong>
+
+            <span>
+              Jumlah Jarak Perjalanan
+            </span>
+
+            <strong id="resDistance">
+              0 KM
+            </strong>
+
           </article>
+
+
           <article class="result-card">
-            <span>Jumlah Penggunaan Bahan Api</span>
-            <strong id="resUsage">0 L</strong>
+
+            <span>
+              Jumlah Penggunaan Bahan Api
+            </span>
+
+            <strong id="resUsage">
+              0 L
+            </strong>
+
           </article>
+
+
           <article class="result-card">
-            <span>Jumlah Pembelian Bahan Api</span>
-            <strong id="resAmount">RM0.00</strong>
+
+            <span>
+              Jumlah Pembelian Bahan Api
+            </span>
+
+            <strong id="resAmount">
+              RM0.00
+            </strong>
+
           </article>
+
+
           <article class="result-card accent">
-            <span>Kadar Penggunaan Bahan Api</span>
-            <strong id="resRate">0 KM/L</strong>
+
+            <span>
+              Kadar Penggunaan Bahan Api
+            </span>
+
+            <strong id="resRate">
+              0 KM/L
+            </strong>
+
           </article>
+
         </div>
 
+
+
+        <!-- MAKLUMAT TAMBAHAN -->
         <div class="panel calculation-note">
+
+
           <div>
-            <span>Baki bahan api anggaran semasa</span>
-            <strong id="resEndingFuel">0 L</strong>
+
+            <span>
+              Baki bahan api anggaran semasa
+            </span>
+
+            <strong id="resEndingFuel">
+              0 L
+            </strong>
+
           </div>
+
+
           <div>
-            <span>Isi minyak terakhir pada odometer</span>
-            <strong id="resLastFuelOdo">-</strong>
+
+            <span>
+              Isi minyak terakhir pada odometer
+            </span>
+
+            <strong id="resLastFuelOdo">
+              -
+            </strong>
+
           </div>
+
+
         </div>
 
+
+
+        <!-- ACTION -->
         <div class="action-stack">
-          <button class="btn btn-primary" id="btnNextSheet">+ Helaian Seterusnya</button>
-          <button class="btn btn-secondary" id="btnFinish">Tamat Bulan & Lihat Ringkasan</button>
+
+          <button
+            class="btn btn-primary"
+            id="btnNextSheet"
+          >
+            + Helaian Seterusnya
+          </button>
+
+
+          <button
+            class="btn btn-secondary"
+            id="btnFinish"
+          >
+            Tamat Bulan & Lihat Ringkasan
+          </button>
+
         </div>
+
       </section>
 
+
+
+      <!-- =========================
+           SUMMARY
+      ========================== -->
       <section id="viewSummary" class="view">
+
         <div class="page-head">
-          <button class="icon-btn" data-go="home" aria-label="Kembali">←</button>
+
+          <button
+            class="icon-btn"
+            data-go="home"
+            aria-label="Kembali"
+          >
+            ←
+          </button>
+
           <div>
-            <span class="eyebrow">RINGKASAN AKHIR BULAN</span>
-            <h2 id="finalMonthTitle">-</h2>
+
+            <span class="eyebrow">
+              RINGKASAN AKHIR BULAN
+            </span>
+
+            <h2 id="finalMonthTitle">
+              -
+            </h2>
+
           </div>
+
         </div>
 
+
+
+        <!-- FINAL CARD -->
         <div class="final-card">
+
+
           <div class="final-main">
-            <span>Kadar Penggunaan</span>
-            <strong id="finalRate">0 KM/L</strong>
+
+            <span>
+              Kadar Penggunaan
+            </span>
+
+            <strong id="finalRate">
+              0 KM/L
+            </strong>
+
           </div>
+
+
+
           <div class="final-stats">
-            <div><span>Jarak</span><strong id="finalDistance">0 KM</strong></div>
-            <div><span>Penggunaan</span><strong id="finalUsage">0 L</strong></div>
-            <div><span>Pembelian</span><strong id="finalAmount">RM0.00</strong></div>
-            <div><span>Baki Akhir</span><strong id="finalEndingFuel">0 L</strong></div>
-          </div>
-        </div>
 
-        <div class="panel">
-          <div class="section-title-row">
+
             <div>
-              <h3>Semakan Helaian</h3>
-              <p>Semua nilai dipaparkan secara terkumpul.</p>
+
+              <span>Jarak</span>
+
+              <strong id="finalDistance">
+                0 KM
+              </strong>
+
             </div>
+
+
+            <div>
+
+              <span>Penggunaan</span>
+
+              <strong id="finalUsage">
+                0 L
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>Pembelian</span>
+
+              <strong id="finalAmount">
+                RM0.00
+              </strong>
+
+            </div>
+
+
+            <div>
+
+              <span>Baki Akhir</span>
+
+              <strong id="finalEndingFuel">
+                0 L
+              </strong>
+
+            </div>
+
+
           </div>
-          <div id="sheetHistory" class="history-list"></div>
+
         </div>
 
-        <div class="action-stack">
-          <button class="btn btn-secondary" id="btnEditLast">Edit Helaian Terakhir</button>
-          <button class="btn btn-danger" id="btnReset">Mulakan Bulan Baharu</button>
+
+
+        <!-- HISTORY -->
+        <div class="panel">
+
+          <div class="section-title-row">
+
+            <div>
+
+              <h3>
+                Semakan Helaian
+              </h3>
+
+              <p>
+                Semua nilai dipaparkan secara terkumpul.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div
+            id="sheetHistory"
+            class="history-list"
+          ></div>
+
         </div>
+
+
+
+        <!-- ACTION -->
+        <div class="action-stack">
+
+
+          <button
+            class="btn btn-secondary"
+            id="btnEditLast"
+          >
+            Edit Helaian Terakhir
+          </button>
+
+
+          <button
+            class="btn btn-danger"
+            id="btnReset"
+          >
+            Mulakan Bulan Baharu
+          </button>
+
+
+        </div>
+
       </section>
+
+
     </main>
 
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
     <footer>
-      <span>Kalkulator Buku Log Kenderaan</span>
-      <span>Data disimpan pada peranti ini sahaja.</span>
+
+      <span>
+        Kalkulator Buku Log UPB
+      </span>
+
+      <span>
+        Data disimpan pada peranti ini sahaja.
+      </span>
+
     </footer>
+
   </div>
 
+
+
+  <!-- =========================
+       TEMPLATE ISI MINYAK
+  ========================== -->
   <template id="fuelEntryTemplate">
+
     <div class="fuel-entry">
+
+
       <div class="fuel-entry-head">
-        <strong class="fuel-label">Isi Minyak</strong>
-        <button type="button" class="remove-fuel" aria-label="Buang rekod isi minyak">Buang</button>
+
+        <strong class="fuel-label">
+          Isi Minyak
+        </strong>
+
+        <button
+          type="button"
+          class="remove-fuel"
+          aria-label="Buang rekod isi minyak"
+        >
+          Buang
+        </button>
+
       </div>
+
+
+
       <div class="fuel-fields">
+
+
         <label>
-          <span>Odometer Ketika Isi</span>
-          <input type="number" class="fuel-odo" step="1" inputmode="numeric" placeholder="Contoh: 322641" required>
+
+          <span>
+            Odometer Ketika Isi
+          </span>
+
+          <input
+            type="number"
+            class="fuel-odo"
+            step="1"
+            inputmode="numeric"
+            placeholder="Contoh: 322641"
+            required
+          >
+
         </label>
+
+
+
         <label>
+
           <span>Liter</span>
-          <input type="number" class="fuel-liters" min="0" step="0.001" inputmode="decimal" placeholder="Contoh: 40.002" required>
+
+          <input
+            type="number"
+            class="fuel-liters"
+            min="0"
+            step="0.001"
+            inputmode="decimal"
+            placeholder="Contoh: 40.002"
+            required
+          >
+
         </label>
+
+
+
         <label>
-          <span>Nilai (RM)</span>
-          <input type="number" class="fuel-amount" min="0" step="0.01" inputmode="decimal" placeholder="Contoh: 184.81" required>
+
+          <span>
+            Nilai (RM)
+          </span>
+
+          <input
+            type="number"
+            class="fuel-amount"
+            min="0"
+            step="0.01"
+            inputmode="decimal"
+            placeholder="Contoh: 184.81"
+            required
+          >
+
         </label>
+
+
       </div>
+
     </div>
+
   </template>
 
-  <script src="./assets/js/app.js" defer></script>
+
+
+  <!-- JAVASCRIPT -->
+  <script
+    src="./assets/js/app.js"
+    defer
+  ></script>
+
 </body>
 </html>
