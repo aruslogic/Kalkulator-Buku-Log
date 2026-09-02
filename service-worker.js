@@ -1,4 +1,4 @@
-const CACHE_NAME = "buku-log-pwa-v5";
+const CACHE_NAME = "buku-log-pwa-v4";
 const ASSETS = [
   "./",
   "./index.html",
