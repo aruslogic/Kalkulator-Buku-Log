@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#082f54">
+  <meta name="description" content="Kalkulator Buku Log Kenderaan untuk kegunaan PERSENJATAAN | UPB.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Kalkulator Buku Log UPB</title>
+
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <button class="brand" id="brandHome" type="button" aria-label="Ke halaman utama">
+          <img class="brand-icon" src="./assets/icons/icon-192.png" alt="">
+          <span class="brand-copy">
+            <strong>Kalkulator Buku Log</strong>
+            <small>PERSENJATAAN <b>|</b> UPB</small>
+          </span>
+        </button>
+        <div class="save-state" id="saveStatus" aria-live="polite">
+          <span class="save-dot"></span>
+          <span>Disimpan</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section id="viewHome" class="view active">
+        <div class="hero-card">
+          <div class="hero-content">
+            <span class="eyebrow eyebrow-light">PERSENJATAAN <b>|</b> UPB</span>
+            <h1>Kira Buku Log Kenderaan Tidak Lagi Buat Kepala Anda Pening.</h1>
+            <p>Masukkan bacaan penting daripada buku log fizikal. Sistem akan urus pengiraan jarak, bahan api, pembelian dan kadar penggunaan untuk anda.</p>
+
+            <div class="hero-actions">
+              <button class="btn btn-light btn-large" id="btnNew" type="button">Mulakan Pengiraan</button>
+              <button class="btn btn-glass btn-large" id="btnResume" type="button" hidden>Sambung Pengiraan</button>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <img src="./assets/icons/icon-512.png" alt="">
+          </div>
+        </div>
+
+        <div class="resume-card" id="resumeCard" hidden>
+          <div>
+            <span class="eyebrow">PENGIRAAN BELUM SELESAI</span>
+            <h2 id="resumeTitle">-</h2>
+            <p id="resumeDetail">-</p>
+          </div>
+          <button class="btn btn-primary" id="btnResumeCard" type="button">Sambung</button>
+        </div>
+
+        <div class="section-intro">
+          <div>
+            <span class="eyebrow">ALIRAN MUDAH</span>
+            <h2>Tiga langkah sahaja</h2>
+          </div>
+          <p>Direka khusus untuk kerja pengiraan buku log hujung bulan.</p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <span class="step-no">01</span>
+            <div><h3>Maklumat Bulan</h3><p>Masukkan kapasiti tangki, kadar standard, baki bahan api dan odometer awal.</p></div>
+          </article>
+          <article class="step-card">
+            <span class="step-no">02</span>
+            <div><h3>Kira Helaian</h3><p>Masukkan odometer akhir dan rekod isi minyak jika ada. Odometer awal disambung automatik.</p></div>
+          </article>
+          <article class="step-card">
+            <span class="step-no">03</span>
+            <div><h3>Salin Keputusan</h3><p>Nilai terkumpul terus dipaparkan untuk disalin ke buku log fizikal.</p></div>
+          </article>
+        </div>
+
+        <div class="internal-note">
+          <span class="internal-icon">UPB</span>
+          <div><strong>Kegunaan dalaman PERSENJATAAN | UPB</strong><p>Data pengiraan disimpan pada peranti ini sahaja dan tidak dihantar ke pelayan.</p></div>
+        </div>
+      </section>
+
+      <section id="viewSetup" class="view">
+        <div class="page-head">
+          <button class="icon-btn" data-go="home" type="button" aria-label="Kembali">←</button>
+          <div>
+            <span class="eyebrow">LANGKAH 1 • MAKLUMAT BULAN</span>
+            <h2>Sediakan Pengiraan Bulanan</h2>
+            <p>Lengkapkan maklumat asas sebelum mula kira helaian.</p>
+          </div>
+        </div>
+
+        <form id="setupForm" class="panel setup-panel" novalidate>
+          <div class="form-section">
+            <div class="form-section-head">
+              <span class="section-icon">01</span>
+              <div><h3>Bulan Pengiraan</h3><p>Pilih bulan buku log yang sedang dikira.</p></div>
+            </div>
+            <label class="field full">
+              <span class="field-label">Bulan / Tahun</span>
+              <input type="month" id="month" required>
+            </label>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="form-section">
+            <div class="form-section-head">
+              <span class="section-icon">02</span>
+              <div><h3>Maklumat Kenderaan</h3><p>Nilai ini digunakan dalam formula pengiraan bahan api.</p></div>
+            </div>
+            <div class="field-grid">
+              <label class="field">
+                <span class="field-label">Kapasiti Tangki</span>
+                <span class="input-unit"><input type="number" id="tankCapacity" min="1" step="0.001" inputmode="decimal" placeholder="70" required><b>L</b></span>
+              </label>
+              <label class="field">
+                <span class="field-label">Kadar Standard</span>
+                <span class="input-unit"><input type="number" id="standardRate" min="0.1" step="0.01" inputmode="decimal" value="7" required><b>km/L</b></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-divider"></div>
+
+          <div class="form-section">
+            <div class="form-section-head">
+              <span class="section-icon">03</span>
+              <div><h3>Bacaan Permulaan</h3><p>Ambil nilai daripada baki bulan lepas dan bacaan awal buku log.</p></div>
+            </div>
+            <div class="field-grid">
+              <label class="field">
+                <span class="field-label">Baki Bahan Api Bulan Lepas</span>
+                <span class="input-unit"><input type="number" id="openingFuel" min="0" step="0.001" inputmode="decimal" placeholder="49" required><b>L</b></span>
+              </label>
+              <label class="field">
+                <span class="field-label">Odometer Awal Bulan</span>
+                <span class="input-unit"><input type="number" id="openingOdo" min="0" step="1" inputmode="numeric" placeholder="322463" required><b>km</b></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="rounding-note">
+            <span>i</span>
+            <p><strong>Pembundaran automatik.</strong> Sistem menggunakan nombor bulat terdekat, contohnya 58.57 → 59 dan 7.80 → 8.</p>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-large full">Teruskan ke Helaian 1 →</button>
+        </form>
+      </section>
+
+      <section id="viewSheet" class="view">
+        <div class="page-head sheet-page-head">
+          <button class="icon-btn" data-go="home" type="button" aria-label="Kembali">←</button>
+          <div class="page-head-copy">
+            <span class="eyebrow" id="sheetEyebrow">HELAIAN 1</span>
+            <h2>Masukkan Bacaan Helaian</h2>
+            <p id="sheetProgressText">0 helaian telah dikira.</p>
+          </div>
+          <span class="saved-chip">Autosave aktif</span>
+        </div>
+
+        <div class="meta-strip">
+          <div><span>Bulan</span><strong id="summaryMonth">-</strong></div>
+          <div><span>Tangki</span><strong id="summaryTank">-</strong></div>
+          <div><span>Standard</span><strong id="summaryRate">-</strong></div>
+        </div>
+
+        <form id="sheetForm" class="sheet-layout" novalidate>
+          <div class="panel sheet-panel">
+            <div class="panel-title">
+              <div><span class="eyebrow">BACAAN ODOMETER</span><h3>Perjalanan Helaian Ini</h3></div>
+              <div class="live-distance"><span>Jarak helaian</span><strong id="liveDistance">0 km</strong></div>
+            </div>
+
+            <div class="field-grid">
+              <label class="field">
+                <span class="field-label">Odometer Awal</span>
+                <span class="input-unit locked"><input type="number" id="sheetStartOdo" step="1" inputmode="numeric" readonly required><b>km</b></span>
+                <small>Disambung automatik daripada helaian sebelumnya.</small>
+              </label>
+              <label class="field">
+                <span class="field-label">Odometer Akhir</span>
+                <span class="input-unit"><input type="number" id="sheetEndOdo" step="1" inputmode="numeric" placeholder="Masukkan bacaan" required><b>km</b></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="panel sheet-panel fuel-panel">
+            <div class="panel-title fuel-question-head">
+              <div><span class="eyebrow">BAHAN API</span><h3>Ada isi minyak dalam helaian ini?</h3><p>Pilih “Tidak” jika tiada pembelian bahan api.</p></div>
+            </div>
+
+            <div class="segmented" role="group" aria-label="Ada isi minyak">
+              <button type="button" class="segment active" id="fuelNo" data-value="no">Tidak</button>
+              <button type="button" class="segment" id="fuelYes" data-value="yes">Ya</button>
+            </div>
+
+            <div id="fuelSection" hidden>
+              <div class="fuel-section-head">
+                <div><h4>Rekod Isi Minyak</h4><p>Masukkan mengikut urutan bacaan odometer.</p></div>
+                <button type="button" class="btn btn-secondary btn-small" id="btnAddFuel">+ Tambah Rekod</button>
+              </div>
+              <div id="fuelEntries" class="fuel-list"></div>
+            </div>
+          </div>
+
+          <div id="sheetError" class="error-box" role="alert" hidden></div>
+
+          <div class="sticky-action">
+            <button type="submit" class="btn btn-primary btn-large">Kira Helaian Ini →</button>
+          </div>
+        </form>
+      </section>
+
+      <section id="viewResult" class="view">
+        <div class="page-head">
+          <button class="icon-btn" id="btnBackToEdit" type="button" aria-label="Kembali">←</button>
+          <div>
+            <span class="eyebrow" id="resultEyebrow">HELAIAN 1 SELESAI</span>
+            <h2>Keputusan Untuk Disalin</h2>
+            <p>Nilai di bawah ialah jumlah terkumpul setakat helaian ini.</p>
+          </div>
+        </div>
+
+        <div class="success-banner"><span>✓</span><div><strong id="resultSuccessTitle">Helaian berjaya dikira</strong><p>Pengiraan telah disimpan pada peranti.</p></div></div>
+
+        <div class="result-grid">
+          <article class="result-card"><span>Jumlah Jarak Perjalanan</span><strong id="resDistance">0 KM</strong><small>TERKUMPUL</small></article>
+          <article class="result-card"><span>Jumlah Penggunaan Bahan Api</span><strong id="resUsage">0 L</strong><small>TERKUMPUL</small></article>
+          <article class="result-card"><span>Jumlah Pembelian Bahan Api</span><strong id="resAmount">RM0.00</strong><small>TERKUMPUL</small></article>
+          <article class="result-card accent"><span>Kadar Penggunaan Bahan Api</span><strong id="resRate">0 KM/L</strong><small>TERKUMPUL</small></article>
+        </div>
+
+        <div class="panel calculation-note">
+          <div><span>Baki bahan api anggaran semasa</span><strong id="resEndingFuel">0 L</strong></div>
+          <div><span>Isi minyak terakhir pada odometer</span><strong id="resLastFuelOdo">-</strong></div>
+        </div>
+
+        <div class="result-actions">
+          <button class="btn btn-primary btn-large" id="btnNextSheet" type="button">+ Tambah Helaian</button>
+          <button class="btn btn-secondary btn-large" id="btnFinish" type="button">Selesai Pengiraan</button>
+        </div>
+        <button class="text-btn" id="btnEditCurrent" type="button">← Edit helaian ini</button>
+      </section>
+
+      <section id="viewSummary" class="view">
+        <div class="page-head">
+          <button class="icon-btn" data-go="home" type="button" aria-label="Kembali">←</button>
+          <div>
+            <span class="eyebrow">RINGKASAN PENGIRAAN</span>
+            <h2 id="finalMonthTitle">-</h2>
+            <p id="finalSheetCount">-</p>
+          </div>
+        </div>
+
+        <div class="summary-hero">
+          <span class="summary-check">✓</span>
+          <span>Pengiraan selesai</span>
+          <strong id="finalRate">0 KM/L</strong>
+          <small>Kadar penggunaan bahan api</small>
+        </div>
+
+        <div class="final-stats">
+          <div><span>Jarak</span><strong id="finalDistance">0 KM</strong></div>
+          <div><span>Penggunaan</span><strong id="finalUsage">0 L</strong></div>
+          <div><span>Pembelian</span><strong id="finalAmount">RM0.00</strong></div>
+          <div><span>Baki Akhir</span><strong id="finalEndingFuel">0 L</strong></div>
+        </div>
+
+        <div class="panel history-panel">
+          <div class="section-intro compact"><div><span class="eyebrow">SEMAKAN</span><h2>Rekod Helaian</h2></div><p>Nilai dipaparkan secara terkumpul.</p></div>
+          <div id="sheetHistory" class="history-list"></div>
+        </div>
+
+        <div class="summary-actions">
+          <button class="btn btn-primary" id="btnContinueAfterSummary" type="button">+ Sambung Pengiraan</button>
+          <button class="btn btn-secondary" id="btnEditLast" type="button">Edit Helaian Terkini</button>
+          <button class="btn btn-danger-soft" id="btnReset" type="button">Mulakan Bulan Baharu</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div><strong>PERSENJATAAN | UPB</strong><span>Kalkulator Buku Log Kenderaan</span></div>
+      <span>Data disimpan pada peranti ini sahaja.</span>
+    </footer>
+  </div>
+
+  <template id="fuelEntryTemplate">
+    <div class="fuel-entry">
+      <div class="fuel-entry-head">
+        <div><span class="fuel-badge">ISI MINYAK</span><strong class="fuel-label">Rekod #1</strong></div>
+        <button type="button" class="remove-fuel" aria-label="Buang rekod isi minyak">Buang</button>
+      </div>
+      <div class="fuel-fields">
+        <label class="field"><span class="field-label">Odometer Ketika Isi</span><span class="input-unit"><input type="number" class="fuel-odo" step="1" inputmode="numeric" placeholder="322641" required><b>km</b></span></label>
+        <label class="field"><span class="field-label">Jumlah Liter</span><span class="input-unit"><input type="number" class="fuel-liters" min="0" step="0.001" inputmode="decimal" placeholder="40.002" required><b>L</b></span></label>
+        <label class="field"><span class="field-label">Nilai Pembelian</span><span class="input-unit money"><b>RM</b><input type="number" class="fuel-amount" min="0" step="0.01" inputmode="decimal" placeholder="184.81" required></span></label>
+      </div>
+    </div>
+  </template>
+
+  <script src="./assets/js/app.js" defer></script>
+</body>
+</html>
