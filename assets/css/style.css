@@ -538,3 +538,56 @@ body.is-splash .main {
   .splash-credit p { margin-top: 5px; }
   .splash-privacy { margin: 10px 0 11px; }
 }
+
+/* =========================================================
+   SPLASH - PERSENJATAAN | UPB
+   ========================================================= */
+
+.splash-title-block .splash-unit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  width: fit-content;
+  min-width: 220px;
+  max-width: calc(100% - 32px);
+
+  margin: 6px auto 0;
+  padding: 10px 20px;
+
+  background: linear-gradient(
+    180deg,
+    #27b94d 0%,
+    #07862f 100%
+  );
+
+  border-radius: 12px;
+
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+  font-style: normal;
+  line-height: 1.15;
+  letter-spacing: 1px;
+  white-space: nowrap;
+
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.splash-title-block .splash-unit span {
+  color: #65ec8b;
+  font-weight: 900;
+}
+
+@media (max-width: 380px) {
+  .splash-title-block .splash-unit {
+    min-width: 200px;
+    padding: 9px 15px;
+    font-size: 14px;
+    letter-spacing: 0.8px;
+    gap: 6px;
+  }
+}
